@@ -1,5 +1,23 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 04 Grounded Answer and Citation Engine
+
+### Added
+
+- Structured grounded-analysis contracts and `/api/v1/analyze/reflection` endpoint.
+- Versioned prompt metadata, isolated untrusted context boundaries, and LLM provider
+  abstraction with a controlled mock implementation.
+- Citation allow-list, lexical support check, and answer-blocking validation failures.
+- Stable source-limited, provider-unavailable, out-of-scope, injection, and medical
+  redirect outcomes with a deterministic doctor notice.
+- Safety fixtures and regression coverage for fake citations, unsupported claims,
+  provider failures, prompt injection, medical advice, and log redaction.
+
+### Boundary
+
+- No production LLM provider, mobile result UI, questionnaire, journal, TTS, or
+  multi-provider routing was added.
+
 ## 2026-07-13 — Sprint 03 Retrieval and Source Routing API
 
 ### Added

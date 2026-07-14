@@ -176,3 +176,15 @@ npm run retrieval:eval
 ```
 
 Komut sentetik değerlendirme kümesinde Recall@5 değerini ölçer.
+
+## Grounded Analysis API
+
+`POST /api/v1/analyze/reflection`, Sprint 04 yapılandırılmış cevap sözleşmesini
+kullanır. Kaynak iddiaları yalnızca retrieval bağlamındaki chunk kimliklerine atıf
+yapabilir; uydurma veya içerikle ilişkisiz atıflar cevabın tamamını engeller.
+Genel sembolik yorum ayrı bir alanda tutulur. Sağlıkla ilişkili içerik deterministik
+hekim uyarısı alır; tanı, tedavi, ilaç ve doz istekleri güvenli biçimde reddedilir.
+
+Gerçek LLM sağlayıcısı onaylanmadığı için production analysis dependency'si
+yapılandırılmamıştır ve `503` döndürür. Testler kontrollü mock provider kullanır;
+ham prompt, kullanıcı sorgusu veya provider cevabı loglanmaz.

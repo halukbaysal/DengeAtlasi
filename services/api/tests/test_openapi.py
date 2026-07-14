@@ -25,3 +25,14 @@ def test_openapi_contains_retrieval_contract() -> None:
         operation["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
         == "#/components/schemas/SearchResponse"
     )
+
+
+def test_openapi_contains_grounded_analysis_contract() -> None:
+    schema = app.openapi()
+
+    operation = schema["paths"]["/api/v1/analyze/reflection"]["post"]
+    assert operation["operationId"] == "analyzeGroundedReflection"
+    assert (
+        operation["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
+        == "#/components/schemas/AnalysisResponse"
+    )

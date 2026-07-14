@@ -1,6 +1,165 @@
 {
   "components": {
     "schemas": {
+      "AnalysisRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "maxLength": 1000,
+            "minLength": 2,
+            "title": "Query",
+            "type": "string"
+          },
+          "topK": {
+            "default": 5,
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Topk",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "AnalysisRequest",
+        "type": "object"
+      },
+      "AnalysisResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievalResult"
+            },
+            "title": "Citations",
+            "type": "array"
+          },
+          "correlationId": {
+            "title": "Correlationid",
+            "type": "string"
+          },
+          "generalSymbolicInterpretation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generalsymbolicinterpretation"
+          },
+          "medicalNotice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Medicalnotice"
+          },
+          "message": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Message"
+          },
+          "promptId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promptid"
+          },
+          "promptVersion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Promptversion"
+          },
+          "sourceLimitNote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcelimitnote"
+          },
+          "sourcedClaims": {
+            "items": {
+              "$ref": "#/components/schemas/GeneratedClaim"
+            },
+            "title": "Sourcedclaims",
+            "type": "array"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AnalysisStatus"
+          }
+        },
+        "required": [
+          "status",
+          "correlationId"
+        ],
+        "title": "AnalysisResponse",
+        "type": "object"
+      },
+      "AnalysisStatus": {
+        "enum": [
+          "ANSWER",
+          "SOURCE_LIMITED",
+          "OUT_OF_SCOPE",
+          "SAFETY_REDIRECT",
+          "MEDICAL_REDIRECT",
+          "PROVIDER_UNAVAILABLE",
+          "CITATION_VALIDATION_FAILED"
+        ],
+        "title": "AnalysisStatus",
+        "type": "string"
+      },
+      "GeneratedClaim": {
+        "additionalProperties": false,
+        "properties": {
+          "citationIds": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "title": "Citationids",
+            "type": "array"
+          },
+          "text": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "citationIds"
+        ],
+        "title": "GeneratedClaim",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -265,6 +424,47 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/analyze/reflection": {
+      "post": {
+        "operationId": "analyzeGroundedReflection",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnalysisRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Analyze Reflection",
+        "tags": [
+          "analysis"
+        ]
+      }
+    },
     "/api/v1/search": {
       "post": {
         "operationId": "searchApprovedSources",

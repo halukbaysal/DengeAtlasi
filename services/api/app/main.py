@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from services.api.app.api.analysis import router as analysis_router
 from services.api.app.api.health import router as health_router
 from services.api.app.api.search import router as search_router
 from services.api.app.config import get_settings
@@ -15,6 +16,7 @@ def create_app() -> FastAPI:
     )
     application.include_router(health_router)
     application.include_router(search_router)
+    application.include_router(analysis_router)
     return application
 
 

@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/v1/analyze/reflection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analyze Reflection */
+        post: operations["analyzeGroundedReflection"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/search": {
         parameters: {
             query?: never;
@@ -42,6 +59,50 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AnalysisRequest */
+        AnalysisRequest: {
+            /** Query */
+            query: string;
+            /**
+             * Topk
+             * @default 5
+             */
+            topK: number;
+        };
+        /** AnalysisResponse */
+        AnalysisResponse: {
+            /** Citations */
+            citations?: components["schemas"]["RetrievalResult"][];
+            /** Correlationid */
+            correlationId: string;
+            /** Generalsymbolicinterpretation */
+            generalSymbolicInterpretation?: string | null;
+            /** Medicalnotice */
+            medicalNotice?: string | null;
+            /** Message */
+            message?: string | null;
+            /** Promptid */
+            promptId?: string | null;
+            /** Promptversion */
+            promptVersion?: string | null;
+            /** Sourcelimitnote */
+            sourceLimitNote?: string | null;
+            /** Sourcedclaims */
+            sourcedClaims?: components["schemas"]["GeneratedClaim"][];
+            status: components["schemas"]["AnalysisStatus"];
+        };
+        /**
+         * AnalysisStatus
+         * @enum {string}
+         */
+        AnalysisStatus: "ANSWER" | "SOURCE_LIMITED" | "OUT_OF_SCOPE" | "SAFETY_REDIRECT" | "MEDICAL_REDIRECT" | "PROVIDER_UNAVAILABLE" | "CITATION_VALIDATION_FAILED";
+        /** GeneratedClaim */
+        GeneratedClaim: {
+            /** Citationids */
+            citationIds: string[];
+            /** Text */
+            text: string;
+        };
         /** HTTPValidationError */
         HTTPValidationError: {
             /** Detail */
@@ -147,6 +208,39 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    analyzeGroundedReflection: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AnalysisRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnalysisResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     searchApprovedSources: {
         parameters: {
             query?: never;
