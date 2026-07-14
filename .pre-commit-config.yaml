@@ -1,0 +1,38 @@
+repos:
+  - repo: local
+    hooks:
+      - id: ruff
+        name: Ruff
+        entry: .venv/bin/python -m ruff check services/api scripts
+        language: system
+        pass_filenames: false
+      - id: eslint
+        name: ESLint
+        entry: npm run lint --workspace apps/mobile
+        language: system
+        pass_filenames: false
+      - id: typescript
+        name: TypeScript
+        entry: npm run typecheck --workspace apps/mobile
+        language: system
+        pass_filenames: false
+      - id: api-client-typescript
+        name: Generated API TypeScript
+        entry: npm run typecheck --workspace @denge-atlasi/api-client
+        language: system
+        pass_filenames: false
+      - id: mypy
+        name: MyPy
+        entry: .venv/bin/python -m mypy services/api/app
+        language: system
+        pass_filenames: false
+      - id: sprint00-docs
+        name: Sprint 00 document validation
+        entry: .venv/bin/python scripts/validate_sprint00.py
+        language: system
+        pass_filenames: false
+      - id: secret-scan
+        name: Secret scan
+        entry: .venv/bin/python scripts/check_secrets.py
+        language: system
+        pass_filenames: false

@@ -1,0 +1,29 @@
+{
+  "name": "denge-atlasi",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/mobile",
+    "packages/api-client"
+  ],
+  "scripts": {
+    "install:all": "npm install && python3 -m pip install -r services/api/requirements-dev.txt",
+    "lint": "npm run lint --workspace apps/mobile && python3 -m ruff check services/api scripts",
+    "typecheck": "npm run typecheck --workspace apps/mobile && npm run typecheck --workspace @denge-atlasi/api-client && python3 -m mypy services/api/app",
+    "test": "npm run test --workspace apps/mobile -- --runInBand && python3 -m pytest services/api/tests",
+    "openapi:generate": "python3 -m services.api.scripts.generate_openapi",
+    "api-client:generate": "npm run generate --workspace @denge-atlasi/api-client",
+    "contract:check": "npm run openapi:generate && npm run api-client:generate && npm run typecheck --workspace @denge-atlasi/api-client",
+    "docs:validate": "python3 scripts/validate_sprint00.py",
+    "secrets:check": "python3 scripts/check_secrets.py",
+    "security:check": "npm audit --audit-level=high && python3 -m pip check",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run contract:check && npm run docs:validate && npm run secrets:check",
+    "mobile:android": "npm run android --workspace apps/mobile",
+    "mobile:ios": "npm run ios --workspace apps/mobile",
+    "mobile:start": "npm run start --workspace apps/mobile"
+  },
+  "engines": {
+    "node": ">=22.11.0",
+    "python": ">=3.9"
+  }
+}

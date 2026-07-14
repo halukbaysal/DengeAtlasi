@@ -1,0 +1,8 @@
+# Replace the fallback owner with team-specific owners when the repository team is established.
+* @bah
+
+/docs/source-registry/ @bah
+/docs/adr/ @bah
+/services/api/ @bah
+/apps/mobile/ @bah
+/.github/ @bah
