@@ -41,13 +41,22 @@ PROHIBITED_MEDICAL = frozenset(
     }
 )
 HEALTH_TERMS = frozenset({"sağlık", "saglik", "hastalık", "hastalik", "belirti", "uyku"})
-OUT_OF_SCOPE_TERMS = frozenset({"yüz analizi", "yuz analizi", "fotoğraf", "fotograf", "kader"})
+OUT_OF_SCOPE_TERMS = frozenset(
+    {
+        "yüz analizi", "yuz analizi", "fotoğraf", "fotograf", "kader",
+        "geleceği söyle", "gelecegi soyle", "nefs mertebem", "nefis mertebem",
+        "nefs mertebemi", "nefis mertebemi", "nafs ranking",
+    }
+)
 INJECTION_MARKERS = (
     "ignore previous",
+    "ignore all previous",
     "önceki talimatları",
     "onceki talimatlari",
     "system prompt",
     "gizli talimat",
+    "developer message",
+    "jailbreak",
 )
 
 

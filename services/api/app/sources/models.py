@@ -5,6 +5,11 @@ from hashlib import sha256
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+SOURCE_INJECTION_MARKERS = (
+    "ignore previous", "ignore all previous", "system prompt",
+    "önceki talimatları", "onceki talimatlari", "developer message", "jailbreak",
+)
+
 
 class ReviewStatus(str, Enum):
     UNREVIEWED = "UNREVIEWED"
@@ -72,6 +77,9 @@ class SourceRecord(BaseModel):
                 raise ValueError("APPROVED sources require CLEARED copyright status")
             if self.ocr_status not in {OcrStatus.COMPLETE, OcrStatus.NOT_APPLICABLE}:
                 raise ValueError("APPROVED sources require completed or non-applicable OCR")
+            source_text = "\n".join(page.original_text for page in self.pages).casefold()
+            if any(marker in source_text for marker in SOURCE_INJECTION_MARKERS):
+                raise ValueError("APPROVED source contains instruction-like content")
         return self
 
     @property

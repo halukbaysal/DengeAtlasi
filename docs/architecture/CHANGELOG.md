@@ -1,5 +1,12 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 09 Security, Safety, and Evaluation
+
+- Added API payload/rate guards and metadata-only correlation logging.
+- Added analytics allowlist enforcement, poisoning/injection gates, safety evaluation data,
+  threat model, incident runbooks, red-team checklist, and release report.
+- Preserved provider, source-governance, medical-safety, and no-biometric boundaries.
+
 ## 2026-07-13 — Sprint 08 Device-Native TTS
 
 ### Added

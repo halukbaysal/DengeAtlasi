@@ -16,6 +16,7 @@
     "api-client:generate": "npm run generate --workspace @denge-atlasi/api-client",
     "sources:index:test": "python3 -m services.api.scripts.index_sources --input services/api/tests/fixtures/sprint02 --test-embedding",
     "retrieval:eval": "python3 -m services.api.scripts.evaluate_retrieval",
+    "safety:eval": "python3 -m services.api.scripts.evaluate_safety",
     "contract:check": "npm run openapi:generate && npm run api-client:generate && npm run typecheck --workspace @denge-atlasi/api-client",
     "docs:validate": "python3 scripts/validate_sprint00.py",
     "secrets:check": "python3 scripts/check_secrets.py",

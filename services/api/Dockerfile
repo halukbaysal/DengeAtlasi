@@ -6,6 +6,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
+RUN apt-get update \
+    && apt-get upgrade --yes \
+    && rm -rf /var/lib/apt/lists/* \
+    && python -m pip install --no-cache-dir --upgrade pip==26.0.1
+
 RUN addgroup --system api && adduser --system --ingroup api api
 
 COPY services/api/requirements.txt ./services/api/requirements.txt

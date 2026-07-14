@@ -48,6 +48,7 @@ htmlcov/
 # Android and Gradle
 .gradle-home/
 **/.gradle/
+**/gradle-daemon-jvm.properties
 **/.cxx/
 **/.kotlin/
 **/local.properties

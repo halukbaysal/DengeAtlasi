@@ -24,6 +24,7 @@
 | 2026-07-13 | Embedding model and provider | PROPOSED | ADR-010 benchmark and licensing evidence required |
 | 2026-07-13 | Post-beta business model and pricing | TBD | Retention, trust, safety, and unit economics must be measured |
 | 2026-07-13 | Store category and final privacy disclosures | TBD | Required before public release, not Sprint 00 implementation |
+| 2026-07-13 | Sprint 09 production release | BLOCKED | Two critical and four high hardened-image findings plus incomplete manual red-team verification; no safe compatible upstream fix currently published |
 
 ## Source Hierarchy Decision
 

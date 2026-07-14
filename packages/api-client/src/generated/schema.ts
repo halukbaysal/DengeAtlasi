@@ -263,6 +263,10 @@ export interface components {
         TemperamentStatus: "THEMES_FOUND" | "SOURCE_LIMITED" | "MEDICAL_REDIRECT" | "SAFETY_REDIRECT";
         /** ValidationError */
         ValidationError: {
+            /** Context */
+            ctx?: Record<string, never>;
+            /** Input */
+            input?: unknown;
             /** Location */
             loc: (string | number)[];
             /** Message */

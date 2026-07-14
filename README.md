@@ -241,3 +241,19 @@ cleanup veya uygulamanın background’a geçmesi aktif konuşmayı durdurur. T�
 çevrimdışı ses bulunamadığında görünür metin korunur ve erişilebilir hata gösterilir.
 Gerçek cihaz kontrol listesi `docs/testing/SPRINT_08_TTS_DEVICE_CHECKLIST.md`
 dosyasındadır.
+
+## Güvenlik ve Değerlendirme
+
+Sprint 09 API isteklerini varsayılan 16 KiB gövde ve istemci başına dakikada 60
+istekle sınırlar. Operasyon logları yalnızca endpoint, durum, gecikme ve korelasyon
+kimliği içerir. Analitik olayları, özellik anahtarları ve değerleri çalışma zamanında
+allowlist ile doğrulanır; kaynak içindeki instruction benzeri içerik onaylı indekse
+giremez.
+
+```bash
+npm run safety:eval
+npm run retrieval:eval
+```
+
+Tehdit modeli, olay runbook'ları, manuel red-team listesi ve güncel release blocker
+durumu `docs/security`, `docs/operations` ve `docs/testing` altında tutulur.
