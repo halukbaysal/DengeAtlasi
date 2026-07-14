@@ -9,10 +9,11 @@
   "scripts": {
     "install:all": "npm install && python3 -m pip install -r services/api/requirements-dev.txt",
     "lint": "npm run lint --workspace apps/mobile && python3 -m ruff check services/api scripts",
-    "typecheck": "npm run typecheck --workspace apps/mobile && npm run typecheck --workspace @denge-atlasi/api-client && python3 -m mypy services/api/app",
+    "typecheck": "npm run typecheck --workspace apps/mobile && npm run typecheck --workspace @denge-atlasi/api-client && python3 -m mypy services/api/app services/api/scripts",
     "test": "npm run test --workspace apps/mobile -- --runInBand && python3 -m pytest services/api/tests",
     "openapi:generate": "python3 -m services.api.scripts.generate_openapi",
     "api-client:generate": "npm run generate --workspace @denge-atlasi/api-client",
+    "sources:index:test": "python3 -m services.api.scripts.index_sources --input services/api/tests/fixtures/sprint02 --test-embedding",
     "contract:check": "npm run openapi:generate && npm run api-client:generate && npm run typecheck --workspace @denge-atlasi/api-client",
     "docs:validate": "python3 scripts/validate_sprint00.py",
     "secrets:check": "python3 scripts/check_secrets.py",

@@ -1,0 +1,25 @@
+{
+  "source_id": "SRC-MAR-9002",
+  "work_title": "Synthetic Unreviewed Fixture",
+  "author": "Synthetic fixture author",
+  "edition": "Test Fixture Edition 1",
+  "publisher": "Denge Atlasi Test Suite",
+  "publication_year": 2026,
+  "language": "Turkish",
+  "category": "PRIMARY",
+  "source_priority": 1,
+  "review_status": "UNREVIEWED",
+  "copyright_status": "PENDING",
+  "ocr_status": "NOT_STARTED",
+  "reviewed_by": "Pending human review",
+  "reviewed_at": "2026-07-13",
+  "synthetic_fixture": true,
+  "pages": [
+    {
+      "page_number": 1,
+      "section": "Unreviewed synthetic text",
+      "content_type": "prose",
+      "original_text": "This invented record must never enter a production index."
+    }
+  ]
+}

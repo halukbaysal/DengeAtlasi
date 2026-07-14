@@ -23,7 +23,7 @@ repos:
         pass_filenames: false
       - id: mypy
         name: MyPy
-        entry: .venv/bin/python -m mypy services/api/app
+        entry: .venv/bin/python -m mypy services/api/app services/api/scripts
         language: system
         pass_filenames: false
       - id: sprint00-docs

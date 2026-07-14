@@ -1,0 +1,31 @@
+{
+  "source_id": "SRC-MAR-9001",
+  "work_title": "Synthetic Marifetname Test Fixture",
+  "author": "Synthetic fixture author",
+  "edition": "Test Fixture Edition 1",
+  "publisher": "Denge Atlasi Test Suite",
+  "publication_year": 2026,
+  "language": "Turkish",
+  "category": "PRIMARY",
+  "source_priority": 1,
+  "review_status": "APPROVED",
+  "copyright_status": "CLEARED",
+  "ocr_status": "NOT_APPLICABLE",
+  "reviewed_by": "Automated synthetic fixture review",
+  "reviewed_at": "2026-07-13",
+  "synthetic_fixture": true,
+  "pages": [
+    {
+      "page_number": 1,
+      "section": "Synthetic balance prose",
+      "content_type": "prose",
+      "original_text": "This invented paragraph exists only to test primary-source chunking.\n\nThis second invented paragraph verifies controlled semantic overlap and traceability."
+    },
+    {
+      "page_number": 2,
+      "section": "Synthetic verse",
+      "content_type": "poetry",
+      "original_text": "Invented first test line\nInvented second test line"
+    }
+  ]
+}

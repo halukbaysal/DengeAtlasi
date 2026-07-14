@@ -141,3 +141,19 @@ Marifetname ve Ibn Sina baskılarının insan/telif incelemesi halen görünür 
 operasyonu sınırlamasıdır; hiçbir baskı retrieval için onaylanmış değildir. Docker
 daemon bulunmayan ortamlarda container doğrulaması atlanabilir ve ortam sınırlaması
 olarak raporlanır.
+
+## Sentetik Kaynak İndeksleme
+
+Sprint 02 indeksleme akışı yalnızca kayıtlı ve `APPROVED` kaynakları kabul eder.
+ADR-010 henüz öneri durumunda olduğundan üretim embedding modeli seçilmemiştir.
+Aşağıdaki komut yalnızca açıkça sentetik test fixture'ları için deterministik test
+embedding'i kullanır:
+
+```bash
+source .venv/bin/activate
+npm run sources:index:test
+```
+
+Komut, yeniden üretilebilir ChromaDB indeksini `data/index/` altında; makine ve
+insan tarafından okunabilen raporları `data/index-reports/` altında oluşturur.
+Gerçek kaynak baskıları insan ve telif incelemesinden geçmeden bu komuta verilmemelidir.
