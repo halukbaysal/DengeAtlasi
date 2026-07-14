@@ -4,6 +4,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import {MedicalSafetyNotice, SourceLimitNotice} from '../components/Notices';
 import {SourceCard} from '../components/SourceCard';
+import {TtsReader} from '../components/TtsReader';
 import type {RootStackParamList} from '../navigation/RootNavigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'TemperamentResult'>;
@@ -16,6 +17,17 @@ export function TemperamentResultScreen({navigation, route}: Props): React.JSX.E
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text accessibilityRole="header" style={styles.title}>Olası mizaç temaları</Text>
+      <TtsReader
+        text={[
+          result.educationalDisclaimer,
+          ...(result.primarySourceFindings?.map(item => item.text) ?? []),
+          ...(result.supplementaryFindings?.map(item => item.text) ?? []),
+          ...(result.reflectionQuestions ?? []),
+          result.medicalSafetyNotice ?? '',
+        ]
+          .filter(Boolean)
+          .join('\n\n')}
+      />
       <Text accessibilityLabel="Eğitim amaçlı açıklama" style={styles.disclaimer}>{result.educationalDisclaimer}</Text>
       {result.sourceLimitNote ? <SourceLimitNotice text={result.sourceLimitNote} /> : null}
       {result.primarySourceFindings?.length ? <Section title="Marifetname — birincil bulgular" values={result.primarySourceFindings.map(item => item.text)} /> : null}

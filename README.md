@@ -227,3 +227,17 @@ bastığında gönderilir. Başarısız istek otomatik tekrarlanmaz veya kuyruğ
 Dışa aktarma sistem paylaşım ekranını yalnızca kullanıcı eylemiyle açar. “Tüm yerel
 veriyi sil” işlemi onaydan sonra bütün günlük kayıtlarını kaldırır. Günlük başlığı,
 metni ve özel notlar analytics veya log payload'larına eklenmez.
+
+## Cihaz İçi Sesli Okuma
+
+Sprint 08, kaynaklandırılmış sonuçları, mizaç temalarını, kaynak ayrıntılarını ve
+yerel günlük metnini `react-native-tts` üzerinden cihazın native konuşma motoruyla
+okur. Oynatma yalnızca kullanıcı eylemiyle başlar; metin, ses veya audio dosyası
+sunucuya yüklenmez ve üretilmez.
+
+Kontroller oynat/devam et, duraklat, durdur ve 0.4–0.6 konuşma hızını kapsar. Native
+pause desteklenmezse duraklat düğmesi güvenli stop fallback’i uygular. Navigation
+cleanup veya uygulamanın background’a geçmesi aktif konuşmayı durdurur. Türkçe
+çevrimdışı ses bulunamadığında görünür metin korunur ve erişilebilir hata gösterilir.
+Gerçek cihaz kontrol listesi `docs/testing/SPRINT_08_TTS_DEVICE_CHECKLIST.md`
+dosyasındadır.

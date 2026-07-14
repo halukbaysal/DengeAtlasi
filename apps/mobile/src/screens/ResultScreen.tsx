@@ -6,6 +6,7 @@ import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {disabledAnalytics as analytics} from '../analytics/analytics';
 import {MedicalSafetyNotice, SourceLimitNotice} from '../components/Notices';
 import {SourceCard} from '../components/SourceCard';
+import {TtsReader} from '../components/TtsReader';
 import type {RootStackParamList} from '../navigation/RootNavigator';
 
 type Citation = components['schemas']['RetrievalResult'];
@@ -27,6 +28,15 @@ export function ResultScreen({navigation, route}: Props): React.JSX.Element {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text accessibilityRole="header" style={styles.title}>Kaynaklandırılmış sonuç</Text>
+      <TtsReader
+        text={[
+          ...(result.sourcedClaims?.map(claim => claim.text) ?? []),
+          result.generalSymbolicInterpretation ?? '',
+          result.medicalNotice ?? '',
+        ]
+          .filter(Boolean)
+          .join('\n\n')}
+      />
       {result.message ? <Text accessibilityRole="alert" style={styles.body}>{result.message}</Text> : null}
       {result.sourcedClaims?.map((claim, index) => (
         <View key={`${index}-${claim.text}`} style={styles.claim}>

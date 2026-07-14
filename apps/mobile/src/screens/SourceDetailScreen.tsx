@@ -2,6 +2,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {ScrollView, StyleSheet, Text} from 'react-native';
 
+import {TtsReader} from '../components/TtsReader';
 import type {RootStackParamList} from '../navigation/RootNavigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'SourceDetail'>;
@@ -16,6 +17,7 @@ export function SourceDetailScreen({route}: Props): React.JSX.Element {
       <Text style={styles.metadata}>Sayfa: {citation.pageNumber}</Text>
       <Text style={styles.metadata}>Bölüm: {citation.section}</Text>
       <Text accessibilityLabel="Kaynak alıntısı" style={styles.excerpt}>{citation.excerpt}</Text>
+      <TtsReader text={`${citation.workTitle}. ${citation.excerpt}`} />
     </ScrollView>
   );
 }

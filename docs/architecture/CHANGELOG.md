@@ -1,5 +1,22 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 08 Device-Native TTS
+
+### Added
+
+- Platform-neutral TTS interface and `react-native-tts` 4.1.1 native adapter.
+- Explicit play/resume, pause-with-stop-fallback, stop, and bounded rate controls.
+- Turkish offline-voice selection, unsupported-voice fallback, and visible-text
+  preservation on errors.
+- Navigation cleanup and background lifecycle stop behavior.
+- Accessible controls for grounded results, temperament output, source detail, and
+  local reflection content, plus a device validation checklist.
+
+### Boundary
+
+- No cloud TTS, network speech voice, audio generation/upload, voice cloning,
+  autoplay, background programming, music, or therapeutic claim was added.
+
 ## 2026-07-13 — Sprint 07 Local Reflection Journal
 
 ### Added

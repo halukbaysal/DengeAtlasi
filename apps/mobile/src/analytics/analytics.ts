@@ -5,6 +5,7 @@ export type AnalyticsEvent =
   | 'analysis_failed'
   | 'citation_opened'
   | 'reflection_saved'
+  | 'tts_started'
   | 'offline_state_seen';
 
 export type AnalyticsProperties = Readonly<{

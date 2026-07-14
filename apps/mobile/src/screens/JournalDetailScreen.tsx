@@ -5,6 +5,7 @@ import {Alert, Platform, Pressable, ScrollView, StyleSheet, Text} from 'react-na
 
 import {requestAnalysis} from '../api/analysisApi';
 import {getJournalRepository} from '../features/journal/service';
+import {TtsReader} from '../components/TtsReader';
 import type {JournalEntry} from '../features/journal/types';
 import type {RootStackParamList} from '../navigation/RootNavigator';
 
@@ -53,6 +54,7 @@ export function JournalDetailScreen({navigation, route}: Props): React.JSX.Eleme
       <Text accessibilityRole="header" style={styles.title}>{entry.title}</Text>
       <Text style={styles.meta}>Son güncelleme: {new Date(entry.updatedAt).toLocaleString()}</Text>
       <Text accessibilityLabel="Özel günlük metni" style={styles.body}>{entry.body}</Text>
+      <TtsReader text={`${entry.title}\n\n${entry.body}`} />
       <Text style={styles.privacy}>Bu metin yalnızca “Bu kaydı analiz et” düğmesine bastığınızda gönderilir. Başarısız istek otomatik tekrarlanmaz.</Text>
       {analysisState === 'error' ? <Text accessibilityRole="alert">Analiz gönderilemedi veya metin API sınırlarını aşıyor.</Text> : null}
       <Pressable accessibilityRole="button" disabled={analysisState === 'loading'} onPress={analyzeExplicitly} style={styles.primary}><Text style={styles.primaryText}>{analysisState === 'loading' ? 'Gönderiliyor…' : 'Bu kaydı analiz et'}</Text></Pressable>

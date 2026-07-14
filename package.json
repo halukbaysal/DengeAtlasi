@@ -7,6 +7,7 @@
     "packages/api-client"
   ],
   "scripts": {
+    "postinstall": "node scripts/patch-react-native-tts.js",
     "install:all": "npm install && python3 -m pip install -r services/api/requirements-dev.txt",
     "lint": "npm run lint --workspace apps/mobile && python3 -m ruff check services/api scripts",
     "typecheck": "npm run typecheck --workspace apps/mobile && npm run typecheck --workspace @denge-atlasi/api-client && python3 -m mypy services/api/app services/api/scripts",

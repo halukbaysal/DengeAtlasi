@@ -1985,6 +1985,8 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
+  - TextToSpeech (4.1.1):
+    - React-Core
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2067,6 +2069,7 @@ DEPENDENCIES:
   - ReactNativeDependencies (from `../../../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
   - RNNitroSQLite (from `../../../node_modules/react-native-nitro-sqlite`)
   - RNScreens (from `../../../node_modules/react-native-screens`)
+  - TextToSpeech (from `../../../node_modules/react-native-tts`)
   - Yoga (from `../../../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
@@ -2227,6 +2230,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-nitro-sqlite"
   RNScreens:
     :path: "../../../node_modules/react-native-screens"
+  TextToSpeech:
+    :path: "../../../node_modules/react-native-tts"
   Yoga:
     :path: "../../../node_modules/react-native/ReactCommon/yoga"
 
@@ -2309,6 +2314,7 @@ SPEC CHECKSUMS:
   ReactNativeDependencies: fa0a54b3f5319ae0e3b9aff32bfee7a424b88e66
   RNNitroSQLite: 32f1128e7d1964bebce3e48e46bf2509cc432faa
   RNScreens: 62693e770c4b73093c018aa7845b691f5ba9988d
+  TextToSpeech: 89b239221ec378d213af422d14789a729705360b
   Yoga: fe50ab299e578f397fef753cf309c6703a4db29b
 
 PODFILE CHECKSUM: 59a45545ecfe4c060eda87026d0ba7eb39374d53
