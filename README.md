@@ -188,3 +188,16 @@ hekim uyarısı alır; tanı, tedavi, ilaç ve doz istekleri güvenli biçimde r
 Gerçek LLM sağlayıcısı onaylanmadığı için production analysis dependency'si
 yapılandırılmamıştır ve `503` döndürür. Testler kontrollü mock provider kullanır;
 ham prompt, kullanıcı sorgusu veya provider cevabı loglanmaz.
+
+## Mobil Kaynak Deneyimi
+
+Sprint 05 mobil akışı Home → Kaynaklara Sor → Sonuç → Kaynak Ayrıntısı rotalarını
+içerir. Mobil istemci, üretilen OpenAPI tiplerini kullanır ve her analiz cevabını
+ek olarak Zod ile doğrular. Kaynak kartları baskı, sayfa, bölüm ve yazar bilgisini
+gösterir; Marifetname kategorisi ek kaynaklardan önce sıralanır. Kaynak sınırı ve
+tıbbi güvenlik uyarıları erişilebilir ve görünür bileşenlerdir.
+
+Yeni analiz ağ bağlantısı gerektirir. Ağ veya API hataları otomatik ve gizli tekrar
+gönderim yapmadan kullanıcıya güvenli durum mesajı olarak gösterilir. Analytics
+arayüzü yalnızca izinli olay ve sınırlı enum metadata kabul eder; soru, prompt,
+alıntı veya sağlık verisi taşıyamaz.

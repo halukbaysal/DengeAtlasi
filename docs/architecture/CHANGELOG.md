@@ -1,5 +1,22 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 05 Mobile Search and Source Experience
+
+### Added
+
+- Home, Ask, Grounded Result, and Source Detail mobile navigation flow.
+- Generated-contract-backed API integration with strict Zod response validation.
+- Accessible source cards, tappable citations, source-limit notice, medical notice,
+  loading, offline, empty, and error states.
+- Primary-source-first citation ordering and edition/page/section/author details.
+- Compile-time analytics allow-list that cannot carry query, prompt, health, or
+  source-excerpt payloads.
+
+### Boundary
+
+- No temperament questionnaire, journal persistence, TTS, authentication, sync,
+  monetization, push notification, or new native dependency was added.
+
 ## 2026-07-13 — Sprint 04 Grounded Answer and Citation Engine
 
 ### Added
