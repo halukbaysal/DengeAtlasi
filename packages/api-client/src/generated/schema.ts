@@ -21,6 +21,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/analyze/temperament": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analyze Temperament */
+        post: operations["analyzeTemperamentThemes"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/search": {
         parameters: {
             query?: never;
@@ -190,6 +207,60 @@ export interface components {
          * @enum {string}
          */
         SearchStatus: "FOUND" | "INSUFFICIENT" | "EMPTY";
+        /** TemperamentFinding */
+        TemperamentFinding: {
+            /** Citationids */
+            citationIds: string[];
+            /** Text */
+            text: string;
+        };
+        /** TemperamentRequest */
+        TemperamentRequest: {
+            /** Confirmsadult */
+            confirmsAdult: boolean;
+            /** Confirmsselfreport */
+            confirmsSelfReport: boolean;
+            /** Consentaccepted */
+            consentAccepted: boolean;
+            /**
+             * Includelifestylecontext
+             * @default false
+             */
+            includeLifestyleContext: boolean;
+            /** Observations */
+            observations: string;
+        };
+        /** TemperamentResponse */
+        TemperamentResponse: {
+            /** Citations */
+            citations?: components["schemas"]["RetrievalResult"][];
+            /** Correlationid */
+            correlationId: string;
+            /** Educationaldisclaimer */
+            educationalDisclaimer: string;
+            /** Medicalsafetynotice */
+            medicalSafetyNotice?: string | null;
+            /** Primarysourcefindings */
+            primarySourceFindings?: components["schemas"]["TemperamentFinding"][];
+            /** Reflectionquestions */
+            reflectionQuestions?: string[];
+            /** Safewellbeingsuggestions */
+            safeWellbeingSuggestions?: string[];
+            /** Sourcelimitnote */
+            sourceLimitNote?: string | null;
+            status: components["schemas"]["TemperamentStatus"];
+            /** Supplementreason */
+            supplementReason?: string | null;
+            /** Supplementaryfindings */
+            supplementaryFindings?: components["schemas"]["TemperamentFinding"][];
+            /** Symbolicthemes */
+            symbolicThemes?: string[];
+        };
+        /**
+         * TemperamentStatus
+         * @enum {string}
+         */
+        TemperamentStatus: "THEMES_FOUND" | "SOURCE_LIMITED" | "MEDICAL_REDIRECT" | "SAFETY_REDIRECT";
         /** ValidationError */
         ValidationError: {
             /** Location */
@@ -228,6 +299,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AnalysisResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    analyzeTemperamentThemes: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TemperamentRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TemperamentResponse"];
                 };
             };
             /** @description Validation Error */

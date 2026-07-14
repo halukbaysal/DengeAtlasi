@@ -1,0 +1,5 @@
+[
+  {"input": "denge ve günlük alışkanlıklar", "expected": "THEMES_FOUND"},
+  {"input": "uyku belirtisi ve denge", "requiresMedicalNotice": true},
+  {"input": "ilaç dozu öner", "expected": "MEDICAL_REDIRECT"}
+]

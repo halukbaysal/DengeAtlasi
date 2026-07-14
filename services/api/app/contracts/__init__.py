@@ -14,6 +14,12 @@ from .search import (
     SearchResponse,
     SearchStatus,
 )
+from .temperament import (
+    TemperamentFinding,
+    TemperamentRequest,
+    TemperamentResponse,
+    TemperamentStatus,
+)
 
 __all__ = [
     "AnalysisRequest",
@@ -28,4 +34,8 @@ __all__ = [
     "SearchRequest",
     "SearchResponse",
     "SearchStatus",
+    "TemperamentFinding",
+    "TemperamentRequest",
+    "TemperamentResponse",
+    "TemperamentStatus",
 ]

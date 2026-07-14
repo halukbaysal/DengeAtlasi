@@ -6,6 +6,7 @@ from uuid import uuid4
 from services.api.app.contracts import (
     RetrievalGroup,
     RetrievalResult,
+    SearchIntent,
     SearchRequest,
     SearchResponse,
     SearchStatus,
@@ -31,8 +32,17 @@ class SearchService:
         self._minimum_score = minimum_score
 
     def search(self, request: SearchRequest) -> SearchResponse:
+        return self.search_for_intent(request)
+
+    def search_for_intent(
+        self,
+        request: SearchRequest,
+        *,
+        intent_override: Optional[SearchIntent] = None,  # noqa: UP045
+        force_supplement: bool = False,
+    ) -> SearchResponse:
         normalized_query = normalize_text(request.query)
-        intent = classify_intent(normalized_query)
+        intent = intent_override or classify_intent(normalized_query)
         route = route_intent(intent)
         query_embedding = self._embeddings.embed([normalized_query])[0]
 
@@ -48,7 +58,7 @@ class SearchService:
             groups.append(RetrievalGroup(role="primary", label="Marifetname", results=primary))
 
         should_supplement = route.supplementary_category is not None and (
-            route.always_supplement or not primary
+            route.always_supplement or force_supplement or not primary
         )
         supplementary: list[RetrievalResult] = []
         if should_supplement:

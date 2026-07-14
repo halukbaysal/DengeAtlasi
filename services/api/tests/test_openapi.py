@@ -36,3 +36,14 @@ def test_openapi_contains_grounded_analysis_contract() -> None:
         operation["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
         == "#/components/schemas/AnalysisResponse"
     )
+
+
+def test_openapi_contains_temperament_contract() -> None:
+    schema = app.openapi()
+
+    operation = schema["paths"]["/api/v1/analyze/temperament"]["post"]
+    assert operation["operationId"] == "analyzeTemperamentThemes"
+    assert (
+        operation["responses"]["200"]["content"]["application/json"]["schema"]["$ref"]
+        == "#/components/schemas/TemperamentResponse"
+    )

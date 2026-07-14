@@ -1,5 +1,24 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 06 Temperament Analysis
+
+### Added
+
+- Adult, consented, self-report-only temperament request and response contracts.
+- Server-controlled temperament retrieval that always queries Marifetname first and
+  optionally labels Ibn Sina lifestyle context as a separate, reasoned supplement.
+- Deterministic uncertainty templates, reflection questions, and low-risk wellbeing
+  suggestion allow-list without personality scoring or definitive classification.
+- Medical escalation and notice enforcement for symptoms, medication, treatment,
+  and dosage input.
+- Mobile consent, observations, thematic result, citation, source-limit, and medical
+  safety presentation with generated-contract-backed Zod validation.
+
+### Boundary
+
+- No child or third-party analysis, modern personality framework, astrology, nafs
+  ranking, facial inference, disease prediction, or treatment advice was added.
+
 ## 2026-07-13 — Sprint 05 Mobile Search and Source Experience
 
 ### Added

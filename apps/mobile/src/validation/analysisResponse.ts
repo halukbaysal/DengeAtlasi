@@ -3,7 +3,7 @@ import {z} from 'zod';
 
 export type AnalysisResponse = components['schemas']['AnalysisResponse'];
 
-const retrievalResultSchema = z
+export const retrievalResultSchema = z
   .object({
     author: z.string().min(1),
     category: z.string().min(1),

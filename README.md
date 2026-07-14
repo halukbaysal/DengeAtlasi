@@ -201,3 +201,16 @@ Yeni analiz ağ bağlantısı gerektirir. Ağ veya API hataları otomatik ve giz
 gönderim yapmadan kullanıcıya güvenli durum mesajı olarak gösterilir. Analytics
 arayüzü yalnızca izinli olay ve sınırlı enum metadata kabul eder; soru, prompt,
 alıntı veya sağlık verisi taşıyamaz.
+
+## Mizaç Öz-Düşünümü
+
+Sprint 06, yalnızca yetişkin kullanıcının kendisi için açık eğitim/güvenlik onayıyla
+başlayabildiği tematik mizaç akışını ekler. `POST /api/v1/analyze/temperament`
+Marifetname'yi server-controlled intent ile önce sorgular. Kullanıcı yaşam tarzı
+bağlamını seçerse Ibn Sina bulguları gerekçesiyle birlikte ayrı ek kaynak bölümünde
+gösterilir.
+
+Yanıtlar kesin bir mizaç veya kişilik tipi atamaz, sayısal puan üretmez ve yalnızca
+“ilgili olabilir” gibi belirsizlik dili kullanır. Genel öneriler sabit düşük-risk
+allow-list'inden gelir. Belirti ve sağlık ifadeleri hekim bildirimini zorunlu kılar;
+ilaç, tedavi ve doz istekleri kişiselleştirilmiş tavsiye üretmeden reddedilir.

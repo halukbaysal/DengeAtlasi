@@ -23,6 +23,14 @@ export function HomeScreen({navigation}: Props): React.JSX.Element {
         style={styles.button}>
         <Text style={styles.buttonText}>Kaynaklara Sor</Text>
       </Pressable>
+      <Pressable
+        accessibilityHint="Eğitim ve onay ekranını açar"
+        accessibilityLabel="Mizaç öz-düşünümünü başlat"
+        accessibilityRole="button"
+        onPress={() => navigation.navigate('TemperamentConsent')}
+        style={styles.secondaryButton}>
+        <Text style={styles.secondaryButtonText}>Mizaç Temalarını İncele</Text>
+      </Pressable>
     </View>
   );
 }
@@ -54,4 +62,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     textAlign: 'center',
   },
+  secondaryButton: {
+    borderColor: '#1D5147',
+    borderRadius: 10,
+    borderWidth: 1,
+    marginTop: 12,
+    minHeight: 48,
+    padding: 14,
+  },
+  secondaryButtonText: {color: '#1D5147', fontSize: 17, fontWeight: '700'},
 });

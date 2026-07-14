@@ -383,6 +383,173 @@
         "title": "SearchStatus",
         "type": "string"
       },
+      "TemperamentFinding": {
+        "additionalProperties": false,
+        "properties": {
+          "citationIds": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "title": "Citationids",
+            "type": "array"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "citationIds"
+        ],
+        "title": "TemperamentFinding",
+        "type": "object"
+      },
+      "TemperamentRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "confirmsAdult": {
+            "title": "Confirmsadult",
+            "type": "boolean"
+          },
+          "confirmsSelfReport": {
+            "title": "Confirmsselfreport",
+            "type": "boolean"
+          },
+          "consentAccepted": {
+            "title": "Consentaccepted",
+            "type": "boolean"
+          },
+          "includeLifestyleContext": {
+            "default": false,
+            "title": "Includelifestylecontext",
+            "type": "boolean"
+          },
+          "observations": {
+            "maxLength": 1000,
+            "minLength": 2,
+            "title": "Observations",
+            "type": "string"
+          }
+        },
+        "required": [
+          "observations",
+          "consentAccepted",
+          "confirmsAdult",
+          "confirmsSelfReport"
+        ],
+        "title": "TemperamentRequest",
+        "type": "object"
+      },
+      "TemperamentResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievalResult"
+            },
+            "title": "Citations",
+            "type": "array"
+          },
+          "correlationId": {
+            "title": "Correlationid",
+            "type": "string"
+          },
+          "educationalDisclaimer": {
+            "title": "Educationaldisclaimer",
+            "type": "string"
+          },
+          "medicalSafetyNotice": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Medicalsafetynotice"
+          },
+          "primarySourceFindings": {
+            "items": {
+              "$ref": "#/components/schemas/TemperamentFinding"
+            },
+            "title": "Primarysourcefindings",
+            "type": "array"
+          },
+          "reflectionQuestions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reflectionquestions",
+            "type": "array"
+          },
+          "safeWellbeingSuggestions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Safewellbeingsuggestions",
+            "type": "array"
+          },
+          "sourceLimitNote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcelimitnote"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TemperamentStatus"
+          },
+          "supplementReason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supplementreason"
+          },
+          "supplementaryFindings": {
+            "items": {
+              "$ref": "#/components/schemas/TemperamentFinding"
+            },
+            "title": "Supplementaryfindings",
+            "type": "array"
+          },
+          "symbolicThemes": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Symbolicthemes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "status",
+          "educationalDisclaimer",
+          "correlationId"
+        ],
+        "title": "TemperamentResponse",
+        "type": "object"
+      },
+      "TemperamentStatus": {
+        "enum": [
+          "THEMES_FOUND",
+          "SOURCE_LIMITED",
+          "MEDICAL_REDIRECT",
+          "SAFETY_REDIRECT"
+        ],
+        "title": "TemperamentStatus",
+        "type": "string"
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -460,6 +627,47 @@
           }
         },
         "summary": "Analyze Reflection",
+        "tags": [
+          "analysis"
+        ]
+      }
+    },
+    "/api/v1/analyze/temperament": {
+      "post": {
+        "operationId": "analyzeTemperamentThemes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TemperamentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TemperamentResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Analyze Temperament",
         "tags": [
           "analysis"
         ]
