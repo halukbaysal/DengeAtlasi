@@ -1,7 +1,7 @@
 import type {components} from '@denge-atlasi/api-client';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import {disabledAnalytics as analytics} from '../analytics/analytics';
 import {MedicalSafetyNotice, SourceLimitNotice} from '../components/Notices';
@@ -41,6 +41,22 @@ export function ResultScreen({navigation, route}: Props): React.JSX.Element {
       ) : null}
       {result.sourceLimitNote ? <SourceLimitNotice text={result.sourceLimitNote} /> : null}
       {result.medicalNotice ? <MedicalSafetyNotice text={result.medicalNotice} /> : null}
+      <Pressable
+        accessibilityRole="button"
+        onPress={() =>
+          navigation.navigate('JournalEdit', {
+            initialBody: [
+              ...(result.sourcedClaims?.map(claim => claim.text) ?? []),
+              result.generalSymbolicInterpretation ?? '',
+            ]
+              .filter(Boolean)
+              .join('\n\n'),
+            linkedAnalysisId: result.correlationId,
+          })
+        }
+        style={styles.saveButton}>
+        <Text style={styles.saveButtonText}>Düşünümü özel günlüğe kaydet</Text>
+      </Pressable>
       {citations.length ? (
         <>
           <Text accessibilityRole="header" style={styles.sectionTitle}>Kaynaklar</Text>
@@ -60,6 +76,8 @@ const styles = StyleSheet.create({
   claim: {backgroundColor: '#FFFFFF', borderRadius: 10, padding: 16},
   container: {backgroundColor: '#F7F4ED', gap: 16, padding: 20},
   sectionTitle: {color: '#173C35', fontSize: 21, fontWeight: '700'},
+  saveButton: {alignItems: 'center', borderColor: '#1D5147', borderRadius: 10, borderWidth: 1, minHeight: 48, padding: 14},
+  saveButtonText: {color: '#1D5147', fontSize: 16, fontWeight: '700'},
   symbolic: {borderLeftColor: '#718B84', borderLeftWidth: 4, gap: 8, padding: 14},
   title: {color: '#173C35', fontSize: 27, fontWeight: '700'},
 });

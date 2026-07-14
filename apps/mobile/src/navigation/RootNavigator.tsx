@@ -6,6 +6,9 @@ import type {AnalysisResponse} from '../validation/analysisResponse';
 import type {TemperamentResponse} from '../validation/temperamentResponse';
 import {AskScreen} from '../screens/AskScreen';
 import {HomeScreen} from '../screens/HomeScreen';
+import {JournalDetailScreen} from '../screens/JournalDetailScreen';
+import {JournalEditScreen} from '../screens/JournalEditScreen';
+import {JournalListScreen} from '../screens/JournalListScreen';
 import {ResultScreen} from '../screens/ResultScreen';
 import {SourceDetailScreen} from '../screens/SourceDetailScreen';
 import {TemperamentConsentScreen} from '../screens/TemperamentConsentScreen';
@@ -20,6 +23,13 @@ export type RootStackParamList = {
   TemperamentConsent: undefined;
   TemperamentInput: undefined;
   TemperamentResult: {result: TemperamentResponse};
+  JournalList: undefined;
+  JournalDetail: {entryId: string};
+  JournalEdit: {
+    entryId?: string;
+    initialBody?: string;
+    linkedAnalysisId?: string | null;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,6 +42,9 @@ export function RootNavigator(): React.JSX.Element {
         name="Home"
         options={{title: 'Denge Atlası'}}
       />
+      <Stack.Screen component={JournalListScreen} name="JournalList" options={{title: 'Özel Günlük'}} />
+      <Stack.Screen component={JournalDetailScreen} name="JournalDetail" options={{title: 'Günlük Kaydı'}} />
+      <Stack.Screen component={JournalEditScreen} name="JournalEdit" options={{title: 'Kaydı Düzenle'}} />
       <Stack.Screen
         component={TemperamentConsentScreen}
         name="TemperamentConsent"

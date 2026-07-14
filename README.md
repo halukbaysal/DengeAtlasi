@@ -214,3 +214,16 @@ Yanıtlar kesin bir mizaç veya kişilik tipi atamaz, sayısal puan üretmez ve 
 “ilgili olabilir” gibi belirsizlik dili kullanır. Genel öneriler sabit düşük-risk
 allow-list'inden gelir. Belirti ve sağlık ifadeleri hekim bildirimini zorunlu kılar;
 ilaç, tedavi ve doz istekleri kişiselleştirilmiş tavsiye üretmeden reddedilir.
+
+## Yerel Özel Günlük
+
+Sprint 07 günlük kayıtlarını yalnızca cihazdaki SQLite `journal_entries` tablosunda
+tutar. Kullanıcı çevrimdışıyken kayıt oluşturabilir, düzenleyebilir ve silebilir;
+veriler uygulama yeniden açıldığında migration sürümü korunarak okunur. Analiz veya
+mizaç sonucundaki düşünceler kullanıcı düğmesiyle taslak olarak günlüğe aktarılabilir.
+
+Bir günlük metni sunucuya yalnızca kullanıcı “Bu kaydı analiz et” düğmesine açıkça
+bastığında gönderilir. Başarısız istek otomatik tekrarlanmaz veya kuyruğa alınmaz.
+Dışa aktarma sistem paylaşım ekranını yalnızca kullanıcı eylemiyle açar. “Tüm yerel
+veriyi sil” işlemi onaydan sonra bütün günlük kayıtlarını kaldırır. Günlük başlığı,
+metni ve özel notlar analytics veya log payload'larına eklenmez.

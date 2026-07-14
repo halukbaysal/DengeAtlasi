@@ -1,5 +1,24 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 07 Local Reflection Journal
+
+### Added
+
+- Versioned SQLite migration with a constrained `journal_entries` schema and index.
+- Parameterized local repository CRUD, persistence, readable export, single-entry
+  deletion, and delete-all behavior.
+- Journal list, create/edit, detail, export, privacy copy, and destructive-action
+  confirmation screens that remain available offline.
+- User-triggered save-from-analysis and explicit analyze-entry actions with no retry
+  queue or background submission.
+- Regression tests for migrations, restart behavior, CRUD, export, deletion, payload
+  limits, single-attempt network failure, and analytics payload boundaries.
+
+### Boundary
+
+- No account, cloud sync, server journal storage, automatic analysis, background
+  resend, social sharing, or new native dependency was added.
+
 ## 2026-07-13 — Sprint 06 Temperament Analysis
 
 ### Added

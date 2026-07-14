@@ -18,4 +18,5 @@ test('analytics contract contains only allowlisted non-sensitive metadata', () =
     'sourceRole',
   ]);
   expect(JSON.stringify(properties)).not.toMatch(/query|prompt|excerpt|health/i);
+  expect(JSON.stringify(properties)).not.toMatch(/journal|body|note|private/i);
 });

@@ -31,6 +31,13 @@ export function HomeScreen({navigation}: Props): React.JSX.Element {
         style={styles.secondaryButton}>
         <Text style={styles.secondaryButtonText}>Mizaç Temalarını İncele</Text>
       </Pressable>
+      <Pressable
+        accessibilityLabel="Özel günlüğü aç"
+        accessibilityRole="button"
+        onPress={() => navigation.navigate('JournalList')}
+        style={styles.secondaryButton}>
+        <Text style={styles.secondaryButtonText}>Özel Günlük</Text>
+      </Pressable>
     </View>
   );
 }

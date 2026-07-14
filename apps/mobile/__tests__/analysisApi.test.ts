@@ -48,6 +48,7 @@ test('blocks malformed data and reports offline failures', async () => {
   await expect(
     requestAnalysis({query: 'denge', topK: 5}, {baseUrl: '', fetcher: offline}),
   ).rejects.toBeInstanceOf(OfflineAnalysisError);
+  expect(offline).toHaveBeenCalledTimes(1);
 });
 
 test('maps non-success HTTP responses to a safe API error', async () => {
