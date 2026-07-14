@@ -70,6 +70,7 @@ def chunk_source(
                     page_number=page.page_number,
                     section=page.section,
                     category=record.category,
+                    review_status=record.review_status,
                     source_priority=record.source_priority,
                     content_type=page.content_type,
                     original_text=text,

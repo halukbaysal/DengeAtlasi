@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
 from services.api.app.api.health import router as health_router
+from services.api.app.api.search import router as search_router
 from services.api.app.config import get_settings
 
 
@@ -13,6 +14,7 @@ def create_app() -> FastAPI:
         redoc_url=None,
     )
     application.include_router(health_router)
+    application.include_router(search_router)
     return application
 
 

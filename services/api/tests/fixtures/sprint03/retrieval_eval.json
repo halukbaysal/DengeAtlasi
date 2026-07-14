@@ -1,0 +1,10 @@
+[
+  {
+    "query": "invented primary-source chunking paragraph",
+    "expectedSourceIds": ["SRC-MAR-9001"]
+  },
+  {
+    "query": "historical invented supplement alpha beta",
+    "expectedSourceIds": ["SRC-IBS-9001"]
+  }
+]

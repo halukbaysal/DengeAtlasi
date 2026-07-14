@@ -1,6 +1,19 @@
 {
   "components": {
     "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
       "HealthResponse": {
         "additionalProperties": false,
         "properties": {
@@ -31,6 +44,218 @@
         ],
         "title": "HealthResponse",
         "type": "object"
+      },
+      "RetrievalGroup": {
+        "additionalProperties": false,
+        "properties": {
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievalResult"
+            },
+            "title": "Results",
+            "type": "array"
+          },
+          "role": {
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "role",
+          "label",
+          "results"
+        ],
+        "title": "RetrievalGroup",
+        "type": "object"
+      },
+      "RetrievalResult": {
+        "additionalProperties": false,
+        "properties": {
+          "author": {
+            "title": "Author",
+            "type": "string"
+          },
+          "category": {
+            "title": "Category",
+            "type": "string"
+          },
+          "chunkId": {
+            "title": "Chunkid",
+            "type": "string"
+          },
+          "edition": {
+            "title": "Edition",
+            "type": "string"
+          },
+          "excerpt": {
+            "title": "Excerpt",
+            "type": "string"
+          },
+          "pageNumber": {
+            "title": "Pagenumber",
+            "type": "integer"
+          },
+          "score": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Score",
+            "type": "number"
+          },
+          "section": {
+            "title": "Section",
+            "type": "string"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "workTitle": {
+            "title": "Worktitle",
+            "type": "string"
+          }
+        },
+        "required": [
+          "chunkId",
+          "sourceId",
+          "workTitle",
+          "author",
+          "edition",
+          "pageNumber",
+          "section",
+          "category",
+          "score",
+          "excerpt"
+        ],
+        "title": "RetrievalResult",
+        "type": "object"
+      },
+      "SearchIntent": {
+        "enum": [
+          "TEMPERAMENT",
+          "ETHICS_HABITS",
+          "NAFS_INNER_DISCIPLINE",
+          "HISTORICAL_HEALTH_LIFESTYLE",
+          "DECISION_SOCIAL_RESPONSIBILITY",
+          "TURKISH_CULTURAL_VALUES",
+          "GENERAL"
+        ],
+        "title": "SearchIntent",
+        "type": "string"
+      },
+      "SearchRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "maxLength": 1000,
+            "minLength": 2,
+            "title": "Query",
+            "type": "string"
+          },
+          "topK": {
+            "default": 5,
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Topk",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "SearchRequest",
+        "type": "object"
+      },
+      "SearchResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "title": "Correlationid",
+            "type": "string"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievalGroup"
+            },
+            "title": "Groups",
+            "type": "array"
+          },
+          "intent": {
+            "$ref": "#/components/schemas/SearchIntent"
+          },
+          "normalizedQuery": {
+            "title": "Normalizedquery",
+            "type": "string"
+          },
+          "sourceLimitNote": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcelimitnote"
+          },
+          "status": {
+            "$ref": "#/components/schemas/SearchStatus"
+          }
+        },
+        "required": [
+          "status",
+          "intent",
+          "normalizedQuery",
+          "groups",
+          "correlationId"
+        ],
+        "title": "SearchResponse",
+        "type": "object"
+      },
+      "SearchStatus": {
+        "enum": [
+          "FOUND",
+          "INSUFFICIENT",
+          "EMPTY"
+        ],
+        "title": "SearchStatus",
+        "type": "string"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
       }
     }
   },
@@ -40,6 +265,47 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/v1/search": {
+      "post": {
+        "operationId": "searchApprovedSources",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Search",
+        "tags": [
+          "retrieval"
+        ]
+      }
+    },
     "/health": {
       "get": {
         "operationId": "getHealth",

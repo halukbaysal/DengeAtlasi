@@ -4,6 +4,23 @@
  */
 
 export interface paths {
+    "/api/v1/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Search */
+        post: operations["searchApprovedSources"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/health": {
         parameters: {
             query?: never;
@@ -25,6 +42,11 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
         /** HealthResponse */
         HealthResponse: {
             /** Service */
@@ -42,6 +64,80 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** RetrievalGroup */
+        RetrievalGroup: {
+            /** Label */
+            label: string;
+            /** Results */
+            results: components["schemas"]["RetrievalResult"][];
+            /** Role */
+            role: string;
+        };
+        /** RetrievalResult */
+        RetrievalResult: {
+            /** Author */
+            author: string;
+            /** Category */
+            category: string;
+            /** Chunkid */
+            chunkId: string;
+            /** Edition */
+            edition: string;
+            /** Excerpt */
+            excerpt: string;
+            /** Pagenumber */
+            pageNumber: number;
+            /** Score */
+            score: number;
+            /** Section */
+            section: string;
+            /** Sourceid */
+            sourceId: string;
+            /** Worktitle */
+            workTitle: string;
+        };
+        /**
+         * SearchIntent
+         * @enum {string}
+         */
+        SearchIntent: "TEMPERAMENT" | "ETHICS_HABITS" | "NAFS_INNER_DISCIPLINE" | "HISTORICAL_HEALTH_LIFESTYLE" | "DECISION_SOCIAL_RESPONSIBILITY" | "TURKISH_CULTURAL_VALUES" | "GENERAL";
+        /** SearchRequest */
+        SearchRequest: {
+            /** Query */
+            query: string;
+            /**
+             * Topk
+             * @default 5
+             */
+            topK: number;
+        };
+        /** SearchResponse */
+        SearchResponse: {
+            /** Correlationid */
+            correlationId: string;
+            /** Groups */
+            groups: components["schemas"]["RetrievalGroup"][];
+            intent: components["schemas"]["SearchIntent"];
+            /** Normalizedquery */
+            normalizedQuery: string;
+            /** Sourcelimitnote */
+            sourceLimitNote?: string | null;
+            status: components["schemas"]["SearchStatus"];
+        };
+        /**
+         * SearchStatus
+         * @enum {string}
+         */
+        SearchStatus: "FOUND" | "INSUFFICIENT" | "EMPTY";
+        /** ValidationError */
+        ValidationError: {
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -51,6 +147,39 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    searchApprovedSources: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SearchRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SearchResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     getHealth: {
         parameters: {
             query?: never;

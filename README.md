@@ -1,8 +1,9 @@
 # Denge Atlası
 
 Denge Atlası, React Native CLI mobil uygulaması ile FastAPI servisinden oluşan bir
-monorepodur. Bu depo şu anda Sprint 01 mühendislik temelini içerir; RAG, kaynak
-işleme, analiz, günlük ve TTS özellikleri henüz uygulanmamıştır.
+monorepodur. Bu depo Sprint 03 sonundaki kaynak indeksleme ve yapılandırılmış
+retrieval temelini içerir; üretken yanıt, analiz, günlük ve TTS özellikleri henüz
+uygulanmamıştır.
 
 ## Gereksinimler
 
@@ -157,3 +158,21 @@ npm run sources:index:test
 Komut, yeniden üretilebilir ChromaDB indeksini `data/index/` altında; makine ve
 insan tarafından okunabilen raporları `data/index-reports/` altında oluşturur.
 Gerçek kaynak baskıları insan ve telif incelemesinden geçmeden bu komuta verilmemelidir.
+
+## Retrieval API
+
+`POST /api/v1/search`, sorguyu sunucuda sınıflandırır ve yalnızca onaylı kaynak
+parçalarını yapılandırılmış gruplar halinde döndürür. Marifetname birincil,
+Ibn Sina ise açıkça ek kaynak olarak yönlendirilir. İstemci koleksiyon ya da kaynak
+önceliği seçemez ve endpoint üretken bir cevap oluşturmaz.
+
+Üretim embedding modeli ADR-010 kapsamında onaylanana kadar endpoint bağımlılığı
+bilinçli olarak yapılandırılmamıştır ve `503` döndürür. Sentetik fixture'larla
+retrieval değerlendirmesini çalıştırmak için:
+
+```bash
+source .venv/bin/activate
+npm run retrieval:eval
+```
+
+Komut sentetik değerlendirme kümesinde Recall@5 değerini ölçer.

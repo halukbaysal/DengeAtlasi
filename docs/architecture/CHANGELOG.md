@@ -1,5 +1,22 @@
 # Architecture Changelog
 
+## 2026-07-13 — Sprint 03 Retrieval and Source Routing API
+
+### Added
+
+- Validated `/api/v1/search` contracts with stable empty and insufficient states.
+- Deterministic intent classification and server-controlled Marifetname-first routing.
+- Approved-only ChromaDB metadata filtering and separated supplementary results.
+- Provider-neutral reranker boundary and a deterministic lexical implementation.
+- Synthetic retrieval fixtures and a Recall@5 evaluation command.
+
+### Boundary
+
+- No generative answer, medical recommendation, citation prose, mobile search UI,
+  journal, or TTS behavior was added.
+- Production retrieval remains unavailable until an embedding model is approved and
+  explicitly configured under ADR-010.
+
 ## 2026-07-13 — Sprint 02 Source Ingestion Pipeline
 
 ### Added

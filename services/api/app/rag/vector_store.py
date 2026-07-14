@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import chromadb
 
@@ -14,8 +14,8 @@ class ChromaVectorStore:
         self,
         *,
         collection_name: str = "denge_atlasi_sources",
-        persist_path: Path | None = None,
-        client: Any | None = None,
+        persist_path: Optional[Path] = None,  # noqa: UP045
+        client: Optional[Any] = None,  # noqa: UP045
     ) -> None:
         if client is not None:
             self._client = client
@@ -24,7 +24,9 @@ class ChromaVectorStore:
             self._client = chromadb.PersistentClient(path=str(persist_path))
         else:
             self._client = chromadb.EphemeralClient()
-        self._collection = self._client.get_or_create_collection(name=collection_name)
+        self._collection = self._client.get_or_create_collection(
+            name=collection_name, configuration={"hnsw": {"space": "cosine"}}
+        )
 
     def replace_source(
         self, chunks: Sequence[SourceChunk], embeddings: Sequence[list[float]]
@@ -61,6 +63,42 @@ class ChromaVectorStore:
         result = self._collection.get(where={"source_id": source_id}, include=["metadatas"])
         return [dict(metadata) for metadata in result["metadatas"] or [] if metadata is not None]
 
+    def query(
+        self,
+        query_embedding: list[float],
+        *,
+        category: str,
+        source_priority: int,
+        top_k: int,
+    ) -> list[dict[str, Any]]:
+        result = self._collection.query(
+            query_embeddings=[query_embedding],
+            n_results=top_k,
+            where={
+                "$and": [
+                    {"category": category},
+                    {"source_priority": source_priority},
+                    {"review_status": "APPROVED"},
+                ]
+            },
+            include=["documents", "metadatas", "distances"],
+        )
+        ids = result["ids"][0] if result["ids"] else []
+        documents = result["documents"][0] if result["documents"] else []
+        metadatas = result["metadatas"][0] if result["metadatas"] else []
+        distances = result["distances"][0] if result["distances"] else []
+        return [
+            {
+                "chunk_id": chunk_id,
+                "document": document,
+                "metadata": dict(metadata or {}),
+                "score": max(0.0, 1.0 - float(distance)),
+            }
+            for chunk_id, document, metadata, distance in zip(
+                ids, documents, metadatas, distances
+            )
+        ]
+
     @staticmethod
     def _metadata(chunk: SourceChunk) -> dict[str, Any]:
         return {
@@ -72,6 +110,7 @@ class ChromaVectorStore:
             "page_number": chunk.page_number,
             "section": chunk.section,
             "category": chunk.category.value,
+            "review_status": chunk.review_status.value,
             "source_priority": chunk.source_priority,
             "content_type": chunk.content_type,
             "chunk_index": chunk.chunk_index,

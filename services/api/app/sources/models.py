@@ -97,6 +97,7 @@ class SourceChunk(BaseModel):
     page_number: int
     section: str
     category: SourceCategory
+    review_status: ReviewStatus
     source_priority: int
     content_type: str
     original_text: str
