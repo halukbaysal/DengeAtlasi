@@ -92,8 +92,7 @@ production retrieval/provider configuration, and legally approved source evidenc
 
 ## Commit hash
 
-The phase commit containing this report is identified by:
-`git log -1 --oneline -- docs/testing/SPRINT_09_5A_EVALUATION_FRAMEWORK_REPORT.md`.
+`34e56e2` — `Implement Sprint 09.5A evaluation framework`
 
 ## Repository state
 
@@ -101,5 +100,5 @@ Sprint 09 remains partial; Sprint 10 is not started.
 
 ## Recommended next action
 
-Commit this framework separately, then prepare Sprint 09.6 governance and validation
-tooling without ingesting or approving production content.
+Proceed to Sprint 09.6 governance without ingesting content; production evaluation must
+wait for external legal and human approvals.

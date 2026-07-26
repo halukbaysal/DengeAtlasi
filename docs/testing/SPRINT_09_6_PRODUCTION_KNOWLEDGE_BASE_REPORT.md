@@ -57,3 +57,36 @@ manifest schema and runbook exist, but they do not constitute operational verifi
 
 Sprint 09.6 cannot truthfully be marked complete until these external human and
 production-data gates are satisfied.
+
+## Files created and modified
+
+Governance models, validator, blocked registry, lifecycle README files, legal/review/
+retrieval instructions, collection runbook, tests, this report, and package commands were
+created or modified. No copyrighted source artifact was added.
+
+## Commands executed and test results
+
+`npm run production-kb:validate` returned the expected `BLOCKED` result. The targeted
+governance suite passed 10/10; the full repository check passed mobile 29/29 and API
+67/67 tests plus lint, typecheck, contract, docs, and secret checks.
+
+## Security and privacy
+
+The gate fails closed and requires separate evidence-backed human decisions. It stores no
+source text, personal data, legal evidence, reviewer identity, secrets, or embeddings.
+Existing dependency findings remain tracked by the Sprint 09 vulnerability register.
+
+## Known limitations
+
+Schemas and runbooks demonstrate enforcement design, not production operations. OCR,
+review, indexing, snapshot, backup, restore, and retrieval results remain absent.
+
+## Commit hash and repository state
+
+Commit `d306923` — `Prepare Sprint 09.6 production knowledge governance`. Branch `main`
+remains blocked from Sprint 10; no production collection exists.
+
+## Recommended next action
+
+Select exact editions and obtain documented legal decisions, then assign the four review
+roles before any scan, OCR output, transcription, or source text enters the pipeline.

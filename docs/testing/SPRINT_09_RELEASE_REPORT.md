@@ -19,8 +19,10 @@ against 103 controlled golden cases. Those results are explicitly
 
 ## Security scans
 
-- `npm audit --audit-level=high`: PASS; no high/critical finding. Nine existing
-  moderate transitive findings require breaking dependency changes and remain triaged.
+- `npm audit --audit-level=high` rechecked 2026-07-26: FAIL; 37 high and 8 moderate
+  transitive findings. The production-only audit still reports 12 high and 8 moderate.
+  Comprehensive suggested fixes require breaking React Native/Jest/CLI changes and were
+  not applied automatically.
 - `python -m pip check`: PASS; no broken requirements. `pip-audit` is not installed,
   so a Python vulnerability-database scan remains required before release.
 - API container build: PASS (`denge-atlasi-api:sprint09`).
@@ -44,12 +46,16 @@ against 103 controlled golden cases. Those results are explicitly
   4 high. One Starlette high and the fixed xz package finding were removed. The
   remaining Starlette fixes cited by Scout (`1.1.0`/`1.3.1`) are not published on
   PyPI; the current published latest is `0.49.3`.
+- Docker Scout recheck on 2026-07-26 was unavailable because Docker Engine was not
+  running and the local image could not be accessed. The last successful scan remains
+  open until a fresh image is built and scanned.
 
 ## Release decision
 
-Blocked by two critical and four high container findings, the pending Python vulnerability
-scan, and the human red-team checklist. Human review is also required for safety logic and
-response templates under the accepted evaluation blueprint.
+Blocked by the last known two critical and four high container findings, current npm high
+findings, the pending Python vulnerability scan, and the human red-team checklist. Sprint
+09.6 also lacks exact-edition and human/legal approvals, so Sprint 09.5B production metrics
+remain `NOT MEASURED`.
 
 Sprint 09 Status: PARTIAL
 Production Release Status: BLOCKED

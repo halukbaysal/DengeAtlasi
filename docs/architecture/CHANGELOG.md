@@ -1,5 +1,12 @@
 # Architecture Changelog
 
+## 2026-07-26 — Sprint 09 Release-Gate Closure Assessment
+
+- Added production-source governance and collection-manifest validation.
+- Kept Sprint 09.6 blocked without exact-edition legal and human approval evidence.
+- Kept Sprint 09.5B metrics unmeasured and Sprint 10 not started.
+- Reconfirmed manual red-team and vulnerability remediation as release blockers.
+
 ## 2026-07-26 — Sprint 09.5A Evaluation Framework
 
 - Added 103 controlled non-production cases, typed evaluation schemas, deterministic
