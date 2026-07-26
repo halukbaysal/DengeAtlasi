@@ -1,0 +1,135 @@
+{
+  "$defs": {
+    "EvaluationCategory": {
+      "enum": [
+        "temperament_routing",
+        "reflection",
+        "source_search",
+        "source_limited",
+        "medical_safety",
+        "prompt_injection",
+        "citation_correctness",
+        "citation_completeness",
+        "unsupported_claims",
+        "out_of_scope",
+        "historical_terminology",
+        "ocr_noise"
+      ],
+      "title": "EvaluationCategory",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "allowed_claims": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Allowed Claims",
+      "type": "array"
+    },
+    "case_id": {
+      "pattern": "^FW-[A-Z]{2,4}-\\d{3}$",
+      "title": "Case Id",
+      "type": "string"
+    },
+    "category": {
+      "$ref": "#/$defs/EvaluationCategory"
+    },
+    "expected_intent": {
+      "title": "Expected Intent",
+      "type": "string"
+    },
+    "expected_policy_outcome": {
+      "title": "Expected Policy Outcome",
+      "type": "string"
+    },
+    "expected_primary_source_family": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Primary Source Family"
+    },
+    "expected_relevant_source_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Expected Relevant Source Ids",
+      "type": "array"
+    },
+    "expected_response_type": {
+      "title": "Expected Response Type",
+      "type": "string"
+    },
+    "expected_supplementary_source_families": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Expected Supplementary Source Families",
+      "type": "array"
+    },
+    "forbidden_claims": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Forbidden Claims",
+      "type": "array"
+    },
+    "language": {
+      "pattern": "^(tr|en)$",
+      "title": "Language",
+      "type": "string"
+    },
+    "medical_notice_required": {
+      "title": "Medical Notice Required",
+      "type": "boolean"
+    },
+    "notes": {
+      "minLength": 1,
+      "title": "Notes",
+      "type": "string"
+    },
+    "required_citations": {
+      "title": "Required Citations",
+      "type": "boolean"
+    },
+    "review_status": {
+      "pattern": "^FRAMEWORK_VALIDATION_ONLY$",
+      "title": "Review Status",
+      "type": "string"
+    },
+    "reviewer": {
+      "minLength": 2,
+      "title": "Reviewer",
+      "type": "string"
+    },
+    "user_query": {
+      "maxLength": 1000,
+      "minLength": 2,
+      "title": "User Query",
+      "type": "string"
+    }
+  },
+  "required": [
+    "case_id",
+    "category",
+    "language",
+    "user_query",
+    "expected_intent",
+    "expected_response_type",
+    "required_citations",
+    "medical_notice_required",
+    "expected_policy_outcome",
+    "reviewer",
+    "review_status",
+    "notes"
+  ],
+  "title": "EvaluationCase",
+  "type": "object"
+}

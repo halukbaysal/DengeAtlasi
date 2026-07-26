@@ -25,6 +25,7 @@ jobs:
       - run: npm ci
       - run: python -m pip install -r services/api/requirements-dev.txt
       - run: npm run check
+      - run: npm run evaluation:smoke
 
   security:
     runs-on: ubuntu-latest

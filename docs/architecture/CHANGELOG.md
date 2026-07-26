@@ -1,5 +1,12 @@
 # Architecture Changelog
 
+## 2026-07-26 — Sprint 09.5A Evaluation Framework
+
+- Added 103 controlled non-production cases, typed evaluation schemas, deterministic
+  scorers, JSON/Markdown reports, local full evaluation, and a CI smoke gate.
+- Corrected release-gate dependency order to 09.5A → 09.6 → 09.5B → Sprint 09 closure.
+- Expanded deterministic safety refusal coverage without changing product features.
+
 ## 2026-07-13 — Sprint 09 Security, Safety, and Evaluation
 
 - Added API payload/rate guards and metadata-only correlation logging.

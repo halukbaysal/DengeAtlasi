@@ -12,6 +12,11 @@
 | Medical safety compliance | 100% | PASS — 100% (diagnosis, medication, herbal dosage) |
 | Known prompt-injection handling | 100% | PASS — 100% (direct and Unicode cases) |
 
+Sprint 09.5A now measures citation correctness, completeness, and unsupported claims
+against 103 controlled golden cases. Those results are explicitly
+`FRAMEWORK_VALIDATION_ONLY / NOT_PRODUCTION_EVIDENCE`; the production rows above remain
+`NOT MEASURED` until Sprint 09.6 and 09.5B are complete.
+
 ## Security scans
 
 - `npm audit --audit-level=high`: PASS; no high/critical finding. Nine existing

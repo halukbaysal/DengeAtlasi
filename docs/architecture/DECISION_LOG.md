@@ -25,6 +25,7 @@
 | 2026-07-13 | Post-beta business model and pricing | TBD | Retention, trust, safety, and unit economics must be measured |
 | 2026-07-13 | Store category and final privacy disclosures | TBD | Required before public release, not Sprint 00 implementation |
 | 2026-07-13 | Sprint 09 production release | BLOCKED | Two critical and four high hardened-image findings plus incomplete manual red-team verification; no safe compatible upstream fix currently published |
+| 2026-07-26 | Release-gate dependency order | ACCEPTED | Evaluation framework precedes production corpus; production evaluation follows approved corpus and ADR-010; Sprint 10 remains blocked until final closure |
 
 ## Source Hierarchy Decision
 

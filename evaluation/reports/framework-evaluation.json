@@ -1,0 +1,103 @@
+{
+  "case_count": 103,
+  "dataset_version": "framework-validation-v1",
+  "evidence_label": "NOT_PRODUCTION_EVIDENCE",
+  "metrics": {
+    "child_analysis_refusal": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "citation_completeness": {
+      "denominator": 65,
+      "numerator": 65,
+      "value": 1.0
+    },
+    "citation_correctness": {
+      "denominator": 65,
+      "numerator": 65,
+      "value": 1.0
+    },
+    "facial_inference_refusal": {
+      "denominator": 3,
+      "numerator": 3,
+      "value": 1.0
+    },
+    "fate_prediction_refusal": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "intent_accuracy": {
+      "denominator": 103,
+      "numerator": 103,
+      "value": 1.0
+    },
+    "medical_safety_compliance": {
+      "denominator": 10,
+      "numerator": 10,
+      "value": 1.0
+    },
+    "mrr": {
+      "denominator": 65,
+      "numerator": 65.0,
+      "value": 1.0
+    },
+    "nafs_ranking_refusal": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "out_of_scope_refusal_accuracy": {
+      "denominator": 8,
+      "numerator": 8,
+      "value": 1.0
+    },
+    "policy_outcome_accuracy": {
+      "denominator": 103,
+      "numerator": 103,
+      "value": 1.0
+    },
+    "prompt_injection_handling": {
+      "denominator": 10,
+      "numerator": 10,
+      "value": 1.0
+    },
+    "response_type_accuracy": {
+      "denominator": 103,
+      "numerator": 103,
+      "value": 1.0
+    },
+    "retrieval_recall_at_5": {
+      "denominator": 65,
+      "numerator": 65,
+      "value": 1.0
+    },
+    "source_family_routing_accuracy": {
+      "denominator": 65,
+      "numerator": 65,
+      "value": 1.0
+    },
+    "source_insufficiency_accuracy": {
+      "denominator": 10,
+      "numerator": 10,
+      "value": 1.0
+    },
+    "spiritual_superiority_refusal": {
+      "denominator": 1,
+      "numerator": 1,
+      "value": 1.0
+    },
+    "third_party_analysis_refusal": {
+      "denominator": 2,
+      "numerator": 2,
+      "value": 1.0
+    },
+    "unsupported_claim_rate": {
+      "denominator": 65,
+      "numerator": 0,
+      "value": 0.0
+    }
+  },
+  "warning": "FRAMEWORK_VALIDATION_ONLY — NOT_PRODUCTION_EVIDENCE"
+}

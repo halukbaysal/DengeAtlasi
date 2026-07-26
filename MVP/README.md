@@ -104,6 +104,10 @@ Sprint 06 — Temperament Analysis
 Sprint 07 — Reflection Journal
 Sprint 08 — Native TTS
 Sprint 09 — Security, Safety, and Evaluation
+Sprint 09.5A — Evaluation Framework
+Sprint 09.6 — Production Knowledge Base
+Sprint 09.5B — Production Evaluation
+Sprint 09 Final Closure
 Sprint 10 — Beta Hardening and Release Readiness
 ```
 
