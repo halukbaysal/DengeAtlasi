@@ -1,0 +1,42 @@
+{
+  "status": "BLOCKED",
+  "production_evidence": false,
+  "registrations": [
+    {
+      "source_id": "SRC-MAR-0001",
+      "work_title": "Marifetname",
+      "author": "Erzurumlu İbrahim Hakkı",
+      "edition": null,
+      "publisher": null,
+      "publication_year": null,
+      "rights_holder": null,
+      "license_or_legal_basis": null,
+      "usage_environment": "NONE",
+      "digital_provenance": null,
+      "page_number_confidence": null,
+      "ocr_suitability": null,
+      "legal_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "ocr_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "content_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "final_approval": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null}
+    },
+    {
+      "source_id": "SRC-IBS-0001",
+      "work_title": "Canon of Medicine / El-Kanun fi't-Tıb",
+      "author": "Ibn Sina",
+      "edition": null,
+      "publisher": null,
+      "publication_year": null,
+      "rights_holder": null,
+      "license_or_legal_basis": null,
+      "usage_environment": "NONE",
+      "digital_provenance": null,
+      "page_number_confidence": null,
+      "ocr_suitability": null,
+      "legal_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "ocr_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "content_review": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null},
+      "final_approval": {"status": "PENDING", "reviewer": null, "decided_at": null, "evidence_reference": null}
+    }
+  ]
+}
