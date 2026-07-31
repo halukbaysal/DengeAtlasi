@@ -30,3 +30,20 @@ KS-01 validates size, `.pdf`, MIME inference, and `%PDF-` header. It preserves t
 original filename, records a safe normalized display filename, captures checksum/size/time,
 and leaves all bibliographic fields `UNKNOWN`. It does not read PDF content beyond the
 header, OCR, classify, decide copyright, chunk, embed, index, or publish.
+
+## KS-02 metadata workspace
+
+KS-02 keeps evidence-backed bibliographic candidates in a separate local workspace; it
+does not mutate the KS-01 registry or runtime source model:
+
+```bash
+python -m backend.ingestion.metadata_workspace --help
+python -m backend.ingestion.metadata_workspace --library data/source-library initialize
+python -m backend.ingestion.metadata_workspace --library data/source-library \
+  export --actor LOCAL_METADATA_OPERATOR
+```
+
+Non-`UNKNOWN` values require fingerprinted evidence. Conflicting values and manual
+corrections remain append-only candidates. Verification requires the explicit
+`HUMAN_METADATA_REVIEWER` role and remains metadata-only: it grants no legal, subject,
+safety, trust, embedding, or publication approval.

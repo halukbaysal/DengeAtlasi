@@ -1,7 +1,7 @@
 # KS-02 — Metadata and Provenance Workspace
 
 **Product:** Knowledge Studio
-**Status:** PLANNED — NOT_STARTED
+**Status:** IMPLEMENTED — AWAITING HUMAN ACCEPTANCE
 **Owner:** UNASSIGNED
 **Last updated:** 2026-07-31
 **Authoritative roadmap:** `../KNOWLEDGE_STUDIO_ROADMAP.md`

@@ -38,7 +38,7 @@ zero exact duplicates, all eight `REGISTERED / UNTRUSTED`, publication blocked 8
 
 ## KS-02 — Metadata and Provenance
 
-**Status:** PLANNED / NOT_STARTED
+**Status:** IMPLEMENTED / AWAITING HUMAN ACCEPTANCE
 
 - **Objective/dependency:** Capture evidence-backed bibliography; KS-01.
 - **In scope/deliverables:** versioned metadata/provenance schema, UNKNOWN semantics,
