@@ -1,7 +1,12 @@
 # Denge Atlası — MVP Sprint Execution System
 
-**Status:** ACTIVE  
+**Status:** SUPERSEDED AS PROJECT-CONTROL AUTHORITY
 **Purpose:** Canonical execution entry point for sprint-by-sprint implementation.
+
+> Historical note: this file remains as evidence of the original single-product sprint
+> sequence. Future work must begin at
+> [`docs/00_PROJECT_CONTROL/MASTER_PROJECT_BLUEPRINT.md`](../docs/00_PROJECT_CONTROL/MASTER_PROJECT_BLUEPRINT.md)
+> and use separate DA/KS roadmap identifiers. Existing sprint files are not deleted.
 
 ---
 

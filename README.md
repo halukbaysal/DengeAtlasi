@@ -1,5 +1,12 @@
 # Denge Atlası
 
+> Project control has moved to
+> [`docs/00_PROJECT_CONTROL/MASTER_PROJECT_BLUEPRINT.md`](docs/00_PROJECT_CONTROL/MASTER_PROJECT_BLUEPRINT.md).
+> The repository now distinguishes the Denge Atlası runtime product from the planned
+> Knowledge Studio administrator product. The statement below describing “Sprint 03”
+> is historical and does not represent the verified current state; see the
+> [current-state audit](docs/00_PROJECT_CONTROL/CURRENT_STATE_AUDIT.md).
+
 Denge Atlası, React Native CLI mobil uygulaması ile FastAPI servisinden oluşan bir
 monorepodur. Bu depo Sprint 03 sonundaki kaynak indeksleme ve yapılandırılmış
 retrieval temelini içerir; üretken yanıt, analiz, günlük ve TTS özellikleri henüz
@@ -142,6 +149,10 @@ Marifetname ve Ibn Sina baskılarının insan/telif incelemesi halen görünür 
 operasyonu sınırlamasıdır; hiçbir baskı retrieval için onaylanmış değildir. Docker
 daemon bulunmayan ortamlarda container doğrulaması atlanabilir ve ortam sınırlaması
 olarak raporlanır.
+
+The authoritative roadmap and release status are now maintained in
+[`docs/DOCUMENTATION_INDEX.md`](docs/DOCUMENTATION_INDEX.md); legacy Sprint 00–10 files
+remain historical implementation contracts.
 
 ## Sentetik Kaynak İndeksleme
 
